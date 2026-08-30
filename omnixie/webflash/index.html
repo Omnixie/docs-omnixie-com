@@ -1,0 +1,52 @@
+<meta charset="utf-8">
+<title>Omnixie Firmware Flasher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+  body { font: 15px/1.6 -apple-system, "Segoe UI", Arial, sans-serif; max-width: 680px; margin: 40px auto; padding: 0 20px; color: #222; }
+  h1 { font-size: 22px; }
+  h2 { font-size: 17px; margin-top: 28px; }
+  .btn-wrap { margin: 24px 0; text-align: center; }
+  ol { padding-left: 20px; }
+  li { margin: 6px 0; }
+  code { background: #f2f2f2; padding: 1px 5px; border-radius: 4px; }
+  .warn { background: #fff7e6; border: 1px solid #f0d090; border-radius: 6px; padding: 10px 14px; }
+  .muted { color: #666; font-size: 13px; }
+  .lang { color: #888; }
+</style>
+
+<h1>Omnixie Wi-Fi Nixie Clock - Firmware Flasher</h1>
+<p class="lang">Omnixie 辉光钟固件在线烧录</p>
+
+<div class="warn">
+  Use <b>Google Chrome</b> or <b>Microsoft Edge</b> on a computer. Safari and Firefox are not supported.
+  <br><span class="lang">请在电脑上用 <b>Chrome</b> 或 <b>Edge</b> 浏览器打开本页。Safari 和 Firefox 不支持。</span>
+</div>
+
+<div class="btn-wrap">
+  <esp-web-install-button manifest="./manifest.json">
+    <button slot="activate" style="font-size:16px;padding:12px 28px;border-radius:8px;border:0;background:#c0392b;color:#fff;cursor:pointer;">
+      Install / 开始烧录
+    </button>
+    <span slot="unsupported">Your browser does not support Web Serial. Please use Chrome or Edge. <span class="lang">当前浏览器不支持 Web Serial，请改用 Chrome 或 Edge。</span></span>
+    <span slot="not-allowed">This page must be served over HTTPS. <span class="lang">本页需通过 HTTPS 访问。</span></span>
+  </esp-web-install-button>
+</div>
+
+<h2>Steps / 操作步骤</h2>
+<ol>
+  <li>Connect the clock to your computer with a USB-C cable.<br><span class="lang">用 USB-C 线把时钟连到电脑。</span></li>
+  <li>Close any serial monitor (CoolTerm, Arduino, screen) that might hold the port.<br><span class="lang">关闭占用串口的程序（CoolTerm、Arduino、screen 等）。</span></li>
+  <li>Click <b>Install</b> above, then pick the serial port named like <code>usbserial</code> / <code>CH340</code> / <code>USB-SERIAL</code>.<br><span class="lang">点上面的 <b>Install</b>，在弹窗里选名字带 <code>usbserial</code> / <code>CH340</code> 的串口。</span></li>
+  <li>Wait for it to finish and reboot. Done.<br><span class="lang">等待烧录完成并自动重启即可。</span></li>
+</ol>
+
+<h2>Notes / 说明</h2>
+<ul>
+  <li>Your clock settings (Wi-Fi, alarms) are kept. This updates the program only.<br><span class="lang">烧录只更新程序，Wi-Fi、闹钟等设置会保留。</span></li>
+  <li><b>Windows</b>: if no port appears, install the CH340 driver from WCH, then replug.<br><span class="lang"><b>Windows</b> 若看不到串口，请安装 WCH 的 CH340 驱动后重新插拔。</span></li>
+  <li><b>macOS</b>: recent versions work without a driver.<br><span class="lang"><b>macOS</b> 新版本一般免驱动。</span></li>
+</ul>
+
+<p class="muted">Firmware v2.3 - Omnixie (c) 2010-2026. Designed by Yan Zeyuan.</p>
+
+<script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>

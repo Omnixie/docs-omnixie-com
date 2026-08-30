@@ -1,0 +1,7 @@
+{
+  "version": "v2.3",
+  "url": "https://docs.omnixie.com/omnixie/webflash/firmware-v2.3.bin",
+  "sha256": "a17234526252c3eda7f204a8969775447323b98e38c0a762daac8bf3e915fd09",
+  "size": 391312,
+  "notes": "SoftAP SSID补齐6位与SN一致; App配网JSON接口(/api/*); captive弹窗抑制; 遥控恢复出厂真正清除Wi-Fi/密码; 配网页显示版本"
+}
