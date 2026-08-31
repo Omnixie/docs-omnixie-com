@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Firmware Changelog - Omnixie | Documentation &amp; Support</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Version history and feature changes for the Omnixie Nixie Tube Clock Wi-Fi (ESP8266) firmware.">
+<meta name="robots" content="index, follow">
+<link rel="icon" href="/logo-small.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" sizes="180x180" href="/logo-small.png">
+<link href="/styles/omnixie-brand.css" rel="stylesheet">
+<style>
+  .muted { color: var(--text-muted-on-dark, #8892A0); }
+  .callout { border: 1px solid var(--border-on-dark, rgba(255,255,255,0.08)); border-left-width: 4px; border-radius: 8px; padding: 0.9em 1.1em; margin: 1em 0; background: var(--surface-elevated, #1A1F2E); }
+  .ver-meta { color: var(--text-muted-on-dark, #8892A0); font-size: 0.9rem; margin: 0 0 0.6em; }
+  .tag { display: inline-block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; padding: 0.15em 0.6em; border-radius: 999px; margin-right: 0.5em; }
+  .tag-added { background: rgba(70,180,120,0.16); color: #6fca97; }
+  .tag-fixed { background: rgba(230,170,60,0.16); color: #e6b34a; }
+  .tag-changed { background: rgba(120,150,230,0.16); color: #8aa6e6; }
+  .content-card__body code { word-break: break-word; }
+</style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="top-nav" role="navigation" aria-label="Main navigation">
+  <a href="/index.html" class="top-nav__logo" aria-label="Omnixie home">
+    <img src="/assets/img/logo/Omnixie-logo-reverse.png" alt="Omnixie" width="126" height="34">
+  </a>
+  <div class="top-nav__links">
+    <a href="/index.html" class="top-nav__link">Products</a>
+    <a href="https://github.com/omnixie/" target="_blank" rel="noopener noreferrer" class="top-nav__link">GitHub</a>
+    <a href="https://www.omnixie.com" target="_blank" rel="noopener noreferrer" class="top-nav__link">Store</a>
+  </div>
+  <div class="top-nav__actions">
+    <a href="https://www.omnixie.com" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-primary">Shop Now</a>
+    <button class="mobile-nav-toggle" aria-label="Toggle menu" aria-expanded="false" onclick="document.getElementById('mobile-nav').classList.toggle('mobile-nav--open'); this.setAttribute('aria-expanded', this.getAttribute('aria-expanded')==='false')">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
+    </button>
+  </div>
+</nav>
+<div id="mobile-nav" class="mobile-nav" role="navigation" aria-label="Mobile navigation">
+  <a href="/index.html">Products</a>
+  <a href="https://github.com/omnixie/" target="_blank" rel="noopener noreferrer">GitHub</a>
+  <a href="https://www.omnixie.com" target="_blank" rel="noopener noreferrer">Store</a>
+</div>
+
+<main>
+  <!-- Hero -->
+  <section class="product-hero">
+    <div class="page-shell">
+      <h1 class="product-hero__name">Firmware Changelog</h1>
+      <p class="product-hero__subtitle">Version history for the Omnixie Clock Wi-Fi (ESP8266) firmware</p>
+    </div>
+  </section>
+
+  <div class="page-shell" style="padding-top: var(--space-8);">
+    <a href="/omnixie/webflash/" class="back-nav">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Firmware Flasher
+    </a>
+
+    <article class="content-card">
+      <div class="content-card__body">
+        <div class="callout">
+          This is the <b>Wi-Fi (ESP8266)</b> firmware version, shown on the web Dashboard status page and in the serial log (from v2.2 it prints <code>Firmware vX.Y</code>). It is different from the version on the tubes / remote menu, which is the display (STC) firmware and is not changed by flashing over Wi-Fi.
+        </div>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h2 class="content-card__title">v2.3</h2>
+      <div class="content-card__body">
+        <p class="ver-meta">2026-08-30</p>
+        <p><span class="tag tag-fixed">Fixed</span> The SoftAP hotspot SSID is now always padded to 6 hex digits so it matches the serial number (SN) printed on the label. Previously a unit whose first serial byte was below <code>0x10</code> (about 6% of units) got a 5-digit SSID (for example SN <code>08EB79</code> became <code>Omnixie_8eb79</code>), which prevented the companion app from deriving the correct SSID from the SN. The SSID is now always <code>Omnixie_</code> + the full 6-digit ID.</p>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h2 class="content-card__title">v2.2</h2>
+      <div class="content-card__body">
+        <p class="ver-meta">2026-08-30</p>
+        <p><span class="tag tag-added">Added</span> Companion-app captive-portal suppression (<code>GET /api/appmode?on=1|0</code>). In app mode the clock answers the operating system's connectivity check with a "has internet" reply (Apple Success / Android 204 / Windows NCSI), so no captive setup page pops up and the app drives the whole setup. The default keeps the pop-up so the traditional manual setup flow is unchanged.</p>
+        <p><span class="tag tag-added">Added</span> The Wi-Fi setup page now shows the firmware version at the bottom (read live from the device).</p>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h2 class="content-card__title">v2.1</h2>
+      <div class="content-card__body">
+        <p class="ver-meta">2026-08-30</p>
+        <p><span class="tag tag-added">Added</span> Companion-app provisioning API (no password required while the clock is in setup / hotspot mode): <code>GET /api/info</code>, <code>GET /api/scan</code>, <code>GET /api/provision</code>.</p>
+        <p><span class="tag tag-fixed">Fixed</span> Wi-Fi setup over the clock's hotspot no longer requires the Dashboard password. This fixes the case where, once a Dashboard password had been set, the setup page could not scan for networks or save Wi-Fi settings.</p>
+        <p><span class="tag tag-changed">Changed</span> Updated the serial boot banner: copyright year 2024 to 2026, "Designed by Zeyuan Yan &amp; Aiden Fang", email removed, shows both omnixie.cn and omnixie.com, and prints the firmware version.</p>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h2 class="content-card__title">v2.0</h2>
+      <div class="content-card__body">
+        <p class="ver-meta">2026-08-30</p>
+        <p><span class="tag tag-fixed">Fixed</span> Factory reset from the remote now truly clears the Wi-Fi settings and the Dashboard password. Previously, if a Dashboard password had been set, the reset silently kept the saved Wi-Fi/password. On the remote (turn the display off with POWER first): <code>9434 OK</code> = full reset including Wi-Fi and password; <code>4648 OK</code> = keep Wi-Fi, reset everything else.</p>
+      </div>
+    </article>
+
+    <article class="content-card">
+      <h2 class="content-card__title">v1.1.5</h2>
+      <div class="content-card__body">
+        <p class="ver-meta">2024-04-03 - original baseline</p>
+        <p>Original release by Zeyuan Yan. Wi-Fi Nixie clock firmware with NTP time sync, web Dashboard configuration, OTA update, and remote control.</p>
+      </div>
+    </article>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="site-footer" role="contentinfo">
+  <div class="page-shell">
+    <div class="site-footer__inner">
+      <div class="site-footer__brand">
+        <img src="/assets/img/logo/Omnixie-logo-reverse.png" alt="Omnixie">
+        <span class="site-footer__tagline">the Light Never Fades</span>
+      </div>
+      <div class="site-footer__links">
+        <a href="https://www.omnixie.com" target="_blank" rel="noopener noreferrer" class="site-footer__link">Store</a>
+        <a href="https://github.com/omnixie/" target="_blank" rel="noopener noreferrer" class="site-footer__link">GitHub</a>
+      </div>
+    </div>
+    <div class="site-footer__copy">Copyright &copy; 2009-2026 <a href="https://omnixie.com" target="_blank" rel="noopener noreferrer">Omnixie</a>. All rights reserved.</div>
+  </div>
+</footer>
+</body>
+</html>
